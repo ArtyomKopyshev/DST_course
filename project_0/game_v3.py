@@ -47,6 +47,7 @@ def score_game(random_predict) -> int:
     min_score = int(min(count_ls)) # Минимальное число попыток
     print(f"Ваш алгоритм угадывает число в среднем за: {score} попыток, максимальное кол-во попыток: {max_score}, минимальное количество попыток: {min_score}")
     #return score
+  
     
 if __name__ == '__main__':
     score_game(game_core_v3)
