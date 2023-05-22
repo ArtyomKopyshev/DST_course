@@ -11,17 +11,19 @@ def game_core_v3(number: int = 1) -> int:
     Returns:
         int: Число попыток
     """
-    count, predict = 1, 50 #Cчётчик попыток и предполагаемое число
-    upper_border, lower_border = 101, 0 #Верхняя и нижняя граница угадывания
+    # Cчётчик попыток и предполагаемое число
+    count, predict = 1, 50 
+    # Верхняя и нижняя граница угадывания
+    upper_border, lower_border = 101, 0 
     
     while number != predict:
         count += 1     
         if number > predict:
             lower_border = predict
-            predict += (upper_border - predict)//2
+            predict += (upper_border - predict) // 2
         elif number < predict:
             upper_border = predict
-            predict -= (predict - lower_border)//2
+            predict -= (predict - lower_border) // 2
 
     return count
 
@@ -36,15 +38,19 @@ def score_game(random_predict) -> int:
         int: среднее количество попыток
     """
     count_ls = []
-    np.random.seed(1)  # фиксируем сид для воспроизводимости
-    random_array = np.random.randint(1, 101, size=(10000))  # загадали список чисел
+    # Фиксируем сид для воспроизводимости
+    np.random.seed(1)  
+    # Загадали список чисел
+    random_array = np.random.randint(1, 101, size=(10000))  
 
-    for number in random_array: #Угадываем каждое число из списка
+    # Угадываем каждое число из списка
+    for number in random_array: 
         count_ls.append(random_predict(number))
-        
-    score = int(np.mean(count_ls)) # Среднее число попыток
-    max_score = int(max(count_ls)) # Максимальное число попыток
-    min_score = int(min(count_ls)) # Минимальное число попыток
+    
+    # Среднее, максимальное и минимальное число попыток 
+    score = int(np.mean(count_ls)) 
+    max_score = int(max(count_ls)) 
+    min_score = int(min(count_ls)) 
     print(f"Ваш алгоритм угадывает число в среднем за: {score} попыток, максимальное кол-во попыток: {max_score}, минимальное количество попыток: {min_score}")
     #return score
   
